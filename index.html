@@ -142,21 +142,19 @@
     </div>
     <!-- navbar section  -->
 
-    <nav class="navbar navbar-expand-lg p-1 sticky-navbar">
-      <div class="container-fluid justify-content-center">
+    <nav class="navbar navbar-expand-lg sticky-navbar py-1 px-3">
+      <div class="container-fluid px-3">
+        <!-- Logo + Toggle Button Row with custom responsive left spacing -->
         <div
-          class="d-flex align-items-center justify-content-center flex-wrap gap-4"
+          class="d-flex w-70 gap-5 align-items-center justify-content-between"
+          style="padding-left: 1px"
         >
           <!-- Logo -->
-          <a class="navbar-brand logo" href="https://www.namfin.in/">
-            <img
-              src="./logo.png"
-              alt="Namdev Finvest Logo"
-              style="height: 60px"
-            />
+          <a class="navbar-brand" href="https://www.namfin.in/">
+            <img src="./logo.png" alt="Namdev Finvest Logo" class="logo-img" />
           </a>
 
-          <!-- Toggle Button for Mobile -->
+          <!-- Toggle Button (mobile view) -->
           <button
             class="navbar-toggler"
             type="button"
@@ -168,45 +166,57 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+        </div>
 
-          <!-- Nav Menu -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0 text-center d-flex gap-4">
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.namfin.in/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="https://www.namfin.in/about/who-we-are"
-                  >About</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.namfin.in/product"
-                  >Products</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="https://www.namfin.in/namdev-workforce/life-at-namdev"
-                  >Our Team</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.namfin.in/blog">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.namfin.in/contact"
-                  >Contact</a
-                >
-              </li>
-            </ul>
-          </div>
+        <!-- Nav Items -->
+        <div
+          class="collapse navbar-collapse justify-content-center mt-2 mt-lg-0"
+          id="navbarSupportedContent"
+        >
+          <ul
+            class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center gap-lg-4 gap-3 text-center"
+          >
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.namfin.in/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.namfin.in/about/who-we-are"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.namfin.in/product"
+                >Products</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://www.namfin.in/namdev-workforce/life-at-namdev"
+                >Our Team</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.namfin.in/blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.namfin.in/contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
+
+    <!-- Custom CSS -->
+    <style>
+      @media (min-width: 992px) {
+        .logo-img {
+          margin-left: 50px;
+        }
+      }
+    </style>
 
     <!-- end of navbar section  -->
 
@@ -237,7 +247,10 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          What happens if a customer pays excess EMI?
+          <span class="accordion-text"
+            >What happens if a customer pays excess EMI?</span
+          >
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           In case of an excess EMI payment, the surplus amount is automatically
@@ -247,7 +260,12 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          What are the available modes for EMI payment with Namdev Finvest?
+          <span class="accordion-text"
+            >What are the available modes for EMI payment with Namdev
+            Finvest?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           At Namdev Finvest Pvt. Ltd., the most preferred and hassle-free mode
@@ -260,7 +278,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          What does PDD mean in loan processing?
+          <span class="accordion-text"
+            >What does PDD mean in loan processing?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           PDD stands for Post Disbursal Documents. These are the documents that
@@ -271,7 +293,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer locate the nearest Namdev Finvest branch?
+          <span class="accordion-text"
+            >How can a customer locate the nearest Namdev Finvest branch?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Customers can easily find the nearest Namdev Finvest branch by
@@ -286,7 +312,9 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer report a fraud?
+          <span class="accordion-text">How can a customer report a fraud?</span>
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Customers can report any fraudulent activity through the following
@@ -333,7 +361,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer check EMI-related information?
+          <span class="accordion-text"
+            >How can a customer check EMI-related information?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Customers can easily verify their EMI-related details through any of
@@ -367,7 +399,12 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer get a foreclosure statement for their loan account?
+          <span class="accordion-text"
+            >How can a customer get a foreclosure statement for their loan
+            account?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           The foreclosure statement is chargeable as per the terms of the loan
@@ -423,7 +460,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer register a complaint?
+          <span class="accordion-text"
+            >How can a customer register a complaint?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Customers can register their concerns or complaints with Namdev
@@ -471,7 +512,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer update contact details?
+          <span class="accordion-text"
+            >How can a customer update contact details?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Customers are encouraged to keep their contact information up to date
@@ -530,7 +575,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer access their Statement of Account?
+          <span class="accordion-text"
+            >How can a customer access their Statement of Account?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           The <strong>Statement of Account</strong> is chargeable as per the
@@ -589,7 +638,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          How can a customer apply for a loan with Namdev Finvest?
+          <span class="accordion-text"
+            >How can a customer apply for a loan with Namdev Finvest?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Interested customers can explore a range of loan products offered by
@@ -641,7 +694,11 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          What is NOC and how can a customer enquire about it?
+          <span class="accordion-text">
+            What is NOC and how can a customer enquire about it?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           <strong>NOC</strong> stands for
@@ -687,7 +744,12 @@
 
       <div class="accordion-item">
         <button class="accordion-button">
-          What are the loan facilities offered by Namdev Finvest Pvt. Ltd.?
+          <span class="accordion-text">
+            What are the loan facilities offered by Namdev Finvest Pvt.
+            Ltd.?</span
+          >
+
+          <span class="accordion-icon">▼</span>
         </button>
         <div class="accordion-body">
           Namdev Finvest Pvt. Ltd. offers a variety of loan facilities tailored
@@ -958,21 +1020,18 @@
     </footer>
 
     <script>
-      const buttons = document.querySelectorAll(".accordion-button");
+      const items = document.querySelectorAll(".accordion-item");
 
-      buttons.forEach((button) => {
+      items.forEach((item) => {
+        const button = item.querySelector(".accordion-button");
         button.addEventListener("click", () => {
-          const currentItem = button.parentElement;
-
-          // Close all accordion items except the clicked one
-          document.querySelectorAll(".accordion-item").forEach((item) => {
-            if (item !== currentItem) {
-              item.classList.remove("active");
-            }
+          // Close all others
+          items.forEach((i) => {
+            if (i !== item) i.classList.remove("active");
           });
 
-          // Toggle the clicked item
-          currentItem.classList.toggle("active");
+          // Toggle current
+          item.classList.toggle("active");
         });
       });
 
