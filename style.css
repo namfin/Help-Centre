@@ -280,6 +280,13 @@ button:focus {
   
   }
 
+  @media (min-width: 992px) {
+  .custom-w-lg {
+    width: 30% !important;
+  }
+}
+
+
   /* main section */
 
  .main-content {
