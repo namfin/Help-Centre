@@ -208,9 +208,30 @@ body {
   .mobile-right {
     justify-content: flex-end;
   }
+  /* Mobile dropdowns */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: max-content;
+    max-width: 90vw;
+    white-space: nowrap;
+    border-radius: 6px;
+  }
+
+  .lang-dropdown .dropdown-menu {
+    left: 0;
+  }
+
+  .login-dropdown .dropdown-menu {
+    left: 0;
+  }
 }
 
-/* Mobile dropdowns */
+/* navbar */
 .material-symbols-outlined {
   font-size: 16px !important; /* size of arrow */
   vertical-align: middle;
