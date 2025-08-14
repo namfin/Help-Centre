@@ -372,10 +372,6 @@ body {
     padding-top: 10px;
   }
 
-  .main-menu .has-child .sub-submenu {
-    padding-top: 0 !important;
-  }
-
   /* Nested submenu (second-level or deeper) */
   .has-child:hover > .submenu {
     display: flex;
@@ -966,3 +962,4 @@ body {
     gap: 10px;
   }
 }
+
