@@ -156,7 +156,7 @@
 
     <!-- navbar section  -->
 
-    <section class="header-wrapper">
+<section class="header-wrapper">
       <div class="container">
         <div class="header-container">
           <!-- Logo -->
@@ -167,7 +167,7 @@
                 alt="Namfin"
                 width="226"
                 height="75"
-              />
+              />    
             </a>
           </div>
 
@@ -272,7 +272,7 @@
                       >
                     </li>
                     <li class="has-child">
-                      <a href="#"
+                      <a href="#" class="sub-submenu"
                         >Disclosure Under Regulation 62 of SEBI LODR 2015
                         <span class="material-symbols-outlined"
                           >chevron_right</span
@@ -282,7 +282,7 @@
                         <li>
                           <a
                             href="https://namfin.in/investor/board-committee-composition"
-                            >Board Committees</a
+                            >composition of Board and Committees</a
                           >
                         </li>
                         <li>
@@ -388,13 +388,13 @@
                     </li>
                   </ul>
                 </li>
-
-                <li>
+            
+                <li class="has-child">
                   <a href="https://namfin.in/blog"
                     ><span class="menu-text">Blog</span></a
                   >
                 </li>
-                <li>
+                <li class="has-child">
                   <a href="https://namfin.in/contact"
                     ><span class="menu-text">Contact</span></a
                   >
@@ -402,20 +402,25 @@
               </ul>
             </nav>
 
-            <!-- Menu Control -->
-            <div class="menu-ctrl">
-              <img
-                src="/assets/images/menuhumber-icon.svg"
-                alt="Menu"
-                class="menuhumber"
-              />
-              <img
-                src="/assets/images/menuclose-icon.svg"
-                alt="Close"
-                class="menuclose"
-              />
-            </div>
+           
+            
           </div>
+          <!-- Menu Control -->
+          <div class="menu-ctrl">
+            <!-- Hamburger icon (visible by default) -->
+            <img
+              src="./media/menuhumber-icon.svg"
+              alt="Menu"
+              class="menuhumber"
+            />
+          
+            <!-- Close icon (hidden by default) -->
+            <img
+              src="./media/menuclose-icon.svg"
+              alt="Close"
+              class="menuclose"
+            />
+          </div>      
         </div>
       </div>
     </section>
@@ -1250,42 +1255,104 @@
 
     <!-- for navbar -->
     <script>
-      const menuCtrl = document.querySelector(".menu-ctrl");
-      const mainMenu = document.querySelector(".main-menu");
+     (function () {
+  const menuCtrl = document.querySelector(".menu-ctrl");
+  const mainMenu = document.querySelector(".main-menu");
+  const headerContainer = document.querySelector(".header-container");
 
-      // Toggle main menu on mobile
-      menuCtrl.addEventListener("click", () => {
-        mainMenu.classList.toggle("open");
-      });
+  function closeAllSubmenus() {
+    document.querySelectorAll(".submenu.open").forEach((sub) => {
+      sub.classList.remove("open");
+      sub.parentElement?.classList.remove("open");
+    });
+  }
 
-      // Mobile submenu toggle
-      document.querySelectorAll(".has-child > a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const submenu = link.nextElementSibling;
+  function closeMenu() {
+    mainMenu.classList.remove("open");
+    headerContainer.classList.remove("open", "menu-open");
+    document.body.style.overflow = "";
+    closeAllSubmenus();
+  }
 
-            document.querySelectorAll(".submenu.open").forEach((openMenu) => {
-              if (openMenu !== submenu) {
-                openMenu.classList.remove("open");
-              }
-            });
+  // Toggle main menu
+  menuCtrl.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const opened = mainMenu.classList.toggle("open");
+  headerContainer.classList.toggle("open", opened);
+  menuCtrl.classList.toggle("open", opened);
 
-            submenu.classList.toggle("open");
-          }
-        });
-      });
+  document.body.style.overflow = opened ? "hidden" : "";
+  if (!opened) closeAllSubmenus();
+  if (opened) {
+      document.body.style.overflow = "hidden";
+      headerContainer.style.marginTop = "-50px"; // set margin when opened
+    } else {
+      closeAllSubmenus();
+      document.body.style.overflow = "";
+      headerContainer.style.marginTop = "0"; // reset margin when closed
+    }
+  });
 
-      // Reset menu on desktop resize
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 768) {
-          mainMenu.classList.remove("open");
-          document.querySelectorAll(".submenu.open").forEach((openMenu) => {
-            openMenu.classList.remove("open");
-          });
+  // Mobile submenu toggle with sibling-only auto-close
+  document.querySelectorAll(".has-child > a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth > 768) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const parentLi = this.parentElement;
+      const submenu = this.nextElementSibling;
+      if (!submenu) return;
+
+      const parentUl = parentLi.parentElement;
+      parentUl.querySelectorAll(":scope > li > .submenu").forEach((sib) => {
+        if (sib !== submenu) {
+          sib.classList.remove("open");
+          sib.parentElement?.classList.remove("open");
         }
       });
-    </script>
+
+      const willOpen = !submenu.classList.contains("open");
+      submenu.classList.toggle("open", willOpen);
+      parentLi.classList.toggle("open", willOpen);
+
+      if (!willOpen) {
+        submenu.querySelectorAll(".submenu.open").forEach((child) => {
+          child.classList.remove("open");
+          child.parentElement?.classList.remove("open");
+        });
+      }
+    });
+  });
+
+  // Close submenu when clicking outside
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll(".submenu.open").forEach((submenu) => {
+      const parentLi = submenu.parentElement;
+      if (
+        !submenu.contains(e.target) &&
+        !parentLi.querySelector("a").contains(e.target)
+      ) {
+        submenu.classList.remove("open");
+        parentLi?.classList.remove("open");
+      }
+    });
+  });
+
+  // Close menu on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // Reset on desktop resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+})();
+
+      </script>
+      
 
     <script>
        
