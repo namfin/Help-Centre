@@ -127,7 +127,7 @@ body {
   min-width: 180px;
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  z-index: 1050;
+  z-index: 9999;
 }
 
 .dropdown-menu a {
@@ -233,28 +233,26 @@ body {
 
 /* navbar */
 .material-symbols-outlined {
-  font-size: 16px !important; /* size of arrow */
+  font-size: 16px !important;
   vertical-align: middle;
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24 !important; /* keep it thin and clean */
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24 !important;
 }
 
 /* ===== HEADER WRAPPER ===== */
-
 .header-wrapper {
   background: #fff;
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff; /* Keep solid background so it's visible over content */
-  z-index: 1; /* Ensure it's above everything */
+  z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
 }
 
 .container {
   max-width: 1200px;
   margin: auto;
-  padding: 0 15px;
+  padding: 0px 15px;
 }
 
 .header-container {
@@ -270,21 +268,23 @@ body {
   align-items: center;
 }
 
-.main-menu li {
-  position: relative;
-}
-
-.main-menu a {
-  display: block;
-  font-size: 14px;
-  padding: 15px 20px;
+.main-menu li a {
+  display: flex; /* make link a flex container */
+  align-items: center; /* vertically center text/icon inside link */
+  font-size: 15px;
+  padding: 10px 20px;
   text-decoration: none;
   color: #000;
+}
+
+.main-menu li {
+  position: relative;
 }
 
 .main-menu li a .menu-text {
   transition: all 0.35s ease-in-out;
 }
+
 .main-menu li:hover > a .menu-text {
   color: #ec333b;
 }
@@ -292,24 +292,24 @@ body {
 /* ===== SUBMENU ===== */
 .submenu {
   display: none;
-  position: absolute;
+  /* position: absolute;
   top: 100%;
-  left: 0;
+  left: 0; */
+  flex-direction: column;
   background: #fff;
   min-width: 220px !important;
-  border: none;
+  list-style: none;
+  border-bottom: 1px solid #cccccc;
   z-index: 1000;
-  flex-direction: column;
-
-  margin-left: 0 !important; /* Remove any extra margin */
-  padding-left: 0 !important; /* Fix the typo here */
+  margin-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 .submenu li {
   list-style: none;
   border-bottom: 1px solid #cccccc;
-  margin: 0; /* Remove any extra gap from li */
-  padding: 0;
+  /* margin: 0; 
+  padding: 0; */
 }
 
 .submenu li:last-child {
@@ -318,17 +318,65 @@ body {
 
 .submenu li a {
   padding: 12px 15px;
-  display: block; /* Ensures link fills full width */
+  font-size: 14px;
+  display: block;
   color: #000;
   transition: all 0.35s ease-in-out;
 }
+
 .submenu li a:hover {
   background: #3a3490;
   color: #fff;
 }
 
-/* ===== DESKTOP HOVER BEHAVIOR ===== */
+/* ===== DESKTOP MENU ===== */
 @media (min-width: 769px) {
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 50px;
+  }
+
+  .menu-ctrl {
+    display: none; /* hide mobile toggle */
+  }
+
+  .main-menu {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* First-level submenu */
+  .main-menu li .submenu {
+    display: none;
+    position: absolute;
+    min-width: 220px !important;
+    background: #fff;
+    z-index: 1000;
+  }
+
+  .main-menu li > .submenu {
+    display: none;
+    position: absolute;
+
+    min-width: 220px !important;
+    background: #fff;
+    z-index: 1000;
+  }
+
+  .main-menu .has-child {
+    position: relative;
+  }
+
+  .header-right {
+    padding-top: 10px;
+  }
+
+  .main-menu .has-child .sub-submenu {
+    padding-top: 0 !important;
+  }
+
+  /* Nested submenu (second-level or deeper) */
   .has-child:hover > .submenu {
     display: flex;
   }
@@ -338,65 +386,133 @@ body {
     left: 100%;
     top: 0;
   }
-}
 
-/* ===== MOBILE MENU TOGGLE ===== */
-.menu-ctrl {
-  display: none;
-  cursor: pointer;
-}
-
-.menu-ctrl img {
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
-}
-
-/* ===== MOBILE STYLES ===== */
-@media (max-width: 768px) {
-  /* Stack menu vertically */
-  .main-menu > ul {
-    flex-direction: column;
-    display: none;
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #ddd;
+  .main-menu li .submenu li {
+    position: relative; /* parent of nested submenu */
   }
 
-  /* Show menu when open */
-  .main-menu.open > ul {
+  .main-menu li .submenu li .submenu {
+    left: 100%; /* open to the right of parent submenu */
+    margin: 0;
+    min-width: 220px !important;
+    background: #fff;
+  }
+
+  /* Show submenu on hover */
+  .main-menu li:hover > .submenu,
+  .main-menu li .submenu li:hover > .submenu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submenu li a {
+    padding: 12px 15px;
+    color: #000;
+  }
+}
+
+/* ===== MOBILE MENU ===== */
+@media (max-width: 768px) {
+  .header-container.menu-open .logo {
+    display: none !important;
+  }
+
+  .main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #3a3490;
+    z-index: 10000;
+    display: none;
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  .main-menu.open {
     display: flex;
   }
 
-  /* Mobile submenu style */
+  .main-menu > ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .main-menu > ul > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
+
+  .main-menu > ul > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    padding: 15px 0;
+    text-decoration: none;
+  }
+
+  .main-menu > ul > li > a .material-symbols-outlined {
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .has-child .material-symbols-outlined {
+    color: #3a3490;
+  }
+
   .submenu {
-    position: static;
-    border: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
   }
 
   .submenu.open {
     display: flex;
   }
 
-  .submenu li a {
-    padding-left: 30px;
+  .submenu a {
+    padding: 12px 10px 12px 30px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  /* Show toggle icons */
   .menu-ctrl {
-    display: block;
+    position: sticky;
+    z-index: 10001;
+    background: #3a3490;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
   }
 
-  /* Only show menu icon initially */
+  .menu-ctrl img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+  }
+
   .menu-ctrl .menuclose {
     display: none;
   }
 
-  /* When menu is open, show close icon */
-  .main-menu.open ~ .menu-ctrl .menuhumber {
+  .menu-ctrl.open .menuhumber {
     display: none;
   }
-  .main-menu.open ~ .menu-ctrl .menuclose {
+
+  .menu-ctrl.open .menuclose {
     display: inline;
   }
 }
